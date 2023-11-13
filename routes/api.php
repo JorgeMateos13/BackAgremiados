@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\RolesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +18,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::controller(RolesController::class)->group(function () {
+    Route::post('nuevoRol', 'addRole');
+    Route::get('roles', 'getRoles');
+    Route::get('role/{id}', 'getRoleByIde');
+    Route::put('editarRole/{id}', 'updateRole');
+    Route::delete('deleteRole/{id}', 'deleteRole');
 });
